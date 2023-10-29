@@ -35,6 +35,7 @@ from .exceptions import FatalError
 from .settings import InvalidSettingsError, NoConfigFile, get_config
 from .terminal import colored
 from .utils import human_formatter, json_formatter
+from .plugins import COMMANDS
 
 try:
     from setproctitle import setproctitle
@@ -233,6 +234,18 @@ def stringify_conf(conf):
             else:
                 out.append(f'  {subkey}: {subvalue}')
     return '\n'.join(out)
+
+
+@click.group()
+class _KhalGroup(click.Group):
+    def list_commands(self, ctx):
+        return super().list_commands(ctx) + list(COMMANDS.keys())
+
+    def get_command(self, ctx, name):
+        if name in COMMANDS:
+            logger.debug(f'found command {name} as a plugin')
+            return COMMANDS[name]
+        return super().get_command(ctx, name)
 
 
 @click.group()
