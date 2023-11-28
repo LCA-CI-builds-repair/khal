@@ -45,7 +45,6 @@ test = [
   "hypothesis",
   "packaging",
   "vdirsyncer",
-  "pkg_resources; python_version >= '3.12'",
 ]
 docs = [
   "sphinx!=1.6.1",
