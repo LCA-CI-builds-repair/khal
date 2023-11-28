@@ -45,6 +45,7 @@ test = [
   "hypothesis",
   "packaging",
   "vdirsyncer",
+  "setuptools",  # python > 3.12 does not ship pkg_resources anymore
 ]
 docs = [
   "sphinx!=1.6.1",
