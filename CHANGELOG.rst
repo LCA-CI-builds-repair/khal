@@ -11,9 +11,10 @@ may want to subscribe to `GitHub's tag feed
 ======
 not released yet
 
-* UPDATED REQUIREMENT urwid is now required >= 2.1.0
+* FIXED: Raise a WidgetError if a canv does not match size.
+* UPDATED REQUIREMENT: urwid is now required >= 2.1.0
 * optimization in ikhal when editing events in the far future or past
-* FIX an issue in ikhal with updating the view of the event list after editing
+* FIX: an issue in ikhal with updating the view of the event list after editing
   an event
 * NEW properties of ikhal themes (dark and light) can now be overriden from the
   config file (via the new [palette] section, check the documenation)
