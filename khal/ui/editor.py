@@ -113,6 +113,10 @@ class DateEdit(urwid.WidgetWrap):
         on_date_change: Callable=lambda _: None,
         weeknumbers: Literal['left', 'right', False]=False,
         firstweekday: int=0,
+def __init__(
+        self,
+        startdt: Optional[dt.date] = None,
+        dateformat: str = "- %Y-%m-%d",
         monthdisplay: Literal['firstday', 'firstfullweek']='firstday',
         keybindings: Optional[Dict[str, List[str]]] = None,
     ) -> None:
@@ -120,6 +124,11 @@ class DateEdit(urwid.WidgetWrap):
         self._dateformat = dateformat
         if startdt is None:
             startdt = dt.date.today()
+        self.editingstartdt = startdt
+        self.editingdateformat = dateformat
+
+        self.editwidget = urwid.Edit(("", self.editingstartdt.strftime(self.editingdateformat)))
+        self.editwidget.set_edit_text(self.editingstartdt.strftime(self.editingdateformat))
         self._edit = ValidatedEdit(
             dateformat=dateformat,
             EditWidget=DateWidget,
