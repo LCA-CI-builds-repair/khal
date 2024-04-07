@@ -116,10 +116,10 @@ class DateEdit(urwid.WidgetWrap):
         monthdisplay: Literal['firstday', 'firstfullweek']='firstday',
         keybindings: Optional[Dict[str, List[str]]] = None,
     ) -> None:
-        datewidth = len(startdt.strftime(dateformat)) + 1
-        self._dateformat = dateformat
         if startdt is None:
             startdt = dt.date.today()
+        datewidth = len(startdt.strftime(dateformat)) + 1
+        self._dateformat = dateformat
         self._edit = ValidatedEdit(
             dateformat=dateformat,
             EditWidget=DateWidget,
