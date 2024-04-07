@@ -113,7 +113,7 @@ class DateEdit(urwid.WidgetWrap):
         on_date_change: Callable=lambda _: None,
         weeknumbers: Literal['left', 'right', False]=False,
         firstweekday: int=0,
-        monthdisplay: Literal['firstday', 'firstfullweek']='firstday',
+        monthdisplay: Literal['firstday', 'firstfullweek'],
         keybindings: Optional[Dict[str, List[str]]] = None,
     ) -> None:
         datewidth = len(startdt.strftime(dateformat)) + 1
