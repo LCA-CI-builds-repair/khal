@@ -113,13 +113,23 @@ class DateEdit(urwid.WidgetWrap):
         on_date_change: Callable=lambda _: None,
         weeknumbers: Literal['left', 'right', False]=False,
         firstweekday: int=0,
+import urwid  # Add urwid import
+
+class Editor(Column):
+# ...
+
         monthdisplay: Literal['firstday', 'firstfullweek']='firstday',
         keybindings: Optional[Dict[str, List[str]]] = None,
     ) -> None:
+        self.urwid_widget = ListBox(self.items)
         datewidth = len(startdt.strftime(dateformat)) + 1
         self._dateformat = dateformat
         if startdt is None:
             startdt = dt.date.today()
+        self.calendar = Calendar(startdt, self._dateformat, datewidth, self.monthdisplay, self.keybindings, self._handle_click)
+        self.panner = Panner(self.calendar, self.urwid_widget)
+
+# ...
         self._edit = ValidatedEdit(
             dateformat=dateformat,
             EditWidget=DateWidget,
