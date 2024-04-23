@@ -1,8 +1,33 @@
 # Copyright (c) 2013-2022 khal contributors
 #
 # Permission is hereby granted, free of charge, to any person obtaining
-# a copy of this software and associated documentation files (the
-# "Software"), to deal in the Software without restriction, including
+# a copy of this software and associated do        :type event: khal.event.Event
+        """
+        if relative:
+            if isinstance(this_date, dt.datetime) or not isinstance(this_date, dt.date):
+                raise ValueError(f'`this_date` is of type `{type(this_date)}`, '
+                                 'should be `datetime.date`')
+        self.event = event
+        self.delete_status = delete_status
+        self.this_date = this_date
+        self._conf = conf
+        self.relative = relative
+        super().__init__('', wrap='clip')
+        self.set_title()
+
+    def get_cursor_coords(self, size) -> Tuple[int, int]:
+        return 0, 0
+
+    def render(self, size, focus=False):
+        canv = super().render(size, focus)
+        if focus:
+            canv = urwid.CompositeCanvas(canv)
+            canv.cursor = 0, 0
+        return canv
+
+    @classmethod
+    def selectable(cls) -> bool:
+        return Trueoftware"), to deal in the Software without restriction, including
 # without limitation the rights to use, copy, modify, merge, publish,
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to
