@@ -1,5 +1,20 @@
 import datetime as dt
-from collections import OrderedDict
+from collections import Ordere"""
+Raise a WidgetError if a canv does not match size.
+"""
+
+# Add the necessary code modifications to handle the WidgetError when a canv does not match the size.
+
+# Sample code snippet (not complete):
+def test_canv_size():
+    canv = create_canv(size=(200, 200))
+    assert canv.get_size() == (200, 200)
+
+    # Simulate a case where the canv size does not match
+    try:
+        canv.set_size((300, 300))
+    except WidgetError as e:
+        assert str(e) == "Canv size does not match"t
 
 import pytest
 from freezegun import freeze_time

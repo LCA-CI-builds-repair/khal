@@ -5,8 +5,14 @@
 # "Software"), to deal in the Software without restriction, including
 # without limitation the rights to use, copy, modify, merge, publish,
 # distribute, sublicense, and/or sell copies of the Software, and to
-# permit persons to whom the Software is furnished to do so, subject to
-# the following conditions:
+# permit persons to whom the Software is furnished to do so, subje        raise WidgetError("Canv does not match si                        vCalAddresses.append(old_attendee)
+                        unchanged_attendees.append(attendee)
+            for attendee in [a for a in attendees if a not in unchanged_attendees]:
+                item = icalendar.prop.vCalAddress(f'MAILTO:{attendee}')
+                item.params['ROLE'] = icalendar.prop.vText('REQ-PARTICIPANT')
+                # Add code to handle WidgetError if the canv does not match size
+                if not canv_matches_size(item):
+                    raise WidgetError("Canv does not match size.")# the following conditions:
 #
 # The above copyright notice and this permission notice shall be
 # included in all copies or substantial portions of the Software.

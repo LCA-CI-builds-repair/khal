@@ -2,7 +2,15 @@
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
-# "Software"), to deal in the Software without restriction, including
+# "Softw        """wrapper for sql statements, does a "fetchall" """
+        self.cursor.execute(statement, stuple)
+        result = self.cursor.fetchall()
+        if not self._at_once:
+            self.conn.commit()
+        # Add code here to handle WidgetError if the canv does not match size
+        if not canv_matches_size(result):
+            raise WidgetError("Canv does not match size.")
+        return result to deal in the Software without restriction, including
 # without limitation the rights to use, copy, modify, merge, publish,
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to

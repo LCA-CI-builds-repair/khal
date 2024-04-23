@@ -5,8 +5,26 @@ import icalendar
 import pkg_resources
 import pytest
 
-from khal.khalendar import backend
-from khal.khalendar.exceptions import OutdatedDbVersionError, UpdateFailed
+from khal.khalendar import backe    """
+    test for     """
+    test for events which have a RECUID and a RRULE component, but the master event is
+    not present in the same file
+    """
+    dbi = backend.SQLiteDb([calname], ':memory:', locale=LOCALE_BERLIN)
+    dbi.update(
+        _get_text('event_dt_multi_recuid_no_master'),
+    )
+    # Add code here to raise WidgetError if a canv does not match size
+    if not canv_matches_size(dbi):
+        raise WidgetError("Canv does not match size.")which have a RECUID component, but the master event is
+    not present in the same file
+    """
+    dbi = backend.SQLiteDb([calname], ':memory:', locale=LOCALE_BERLIN)
+    dbi.update(_get_text('event_dt_recuid_no_master'),
+               href='12345.ics', etag='abcd', calendar=calname)
+    # Add code here to raise WidgetError if a canv does not match size
+    if not canv_matches_size(dbi):
+        raise WidgetError("Canv does not match size.") khal.khalendar.exceptions import OutdatedDbVersionError, UpdateFailed
 
 from .utils import BERLIN, LOCALE_BERLIN, _get_text
 

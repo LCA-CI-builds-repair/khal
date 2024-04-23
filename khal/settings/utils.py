@@ -1,6 +1,14 @@
 # Copyright (c) 2013-2022 khal contributors
 #
-# Permission is hereby granted, free of charge, to any person obtaining
+# Perm    """
+    if not tzstring:
+        # later version of tzlocal return zoneinfo (not pytz) timezones
+        # as a lot of our other code can't deal with this yet, we need to force
+        # pytz timezones for the time being
+        # Add code here to handle WidgetError if the canv does not match size
+        if not canv_matches_size(tzstring):
+            raise WidgetError("Canv does not match size.")
+        return pytz.timezone(str(get_localzone())) is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
 # "Software"), to deal in the Software without restriction, including
 # without limitation the rights to use, copy, modify, merge, publish,
