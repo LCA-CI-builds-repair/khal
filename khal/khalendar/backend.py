@@ -2,8 +2,23 @@
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
-# "Software"), to deal in the Software without restriction, including
-# without limitation the rights to use, copy, modify, merge, publish,
+# "Software"), to deal in the Soft    def update_vcf_dates(self, vevent_str: str, href: str, etag: str='',
+                         calendar: Optional[str]=None) -> None:
+        """
+        insert events from a vcard into the db
+
+        This will parse BDAY, ANNIVERSARY, X-ANNIVERSARY and X-ABDATE fields.
+        It will also look for any X-ABLABEL fields associated with an X-ABDATE
+        and use that in the event description.
+
+        :param vevent_str: contact (vcard) to be parsed.
+        :param href: href of the card on the server, if this href already
+            exists in the db the card gets updated. If no href is given, a
+            random href is chosen and it is implied that this card does not yet
+            exist on the server, but will be uploaded there on next sync.
+        :param etag: the etag of the vcard, if this etag does not match the
+            remote etag on next sync, this card will be updated from the server.
+        """mitation the rights to use, copy, modify, merge, publish,
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to
 # the following conditions:
