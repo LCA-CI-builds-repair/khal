@@ -4,7 +4,37 @@ All notable changes to this project should be documented here.
 For more detailed information have a look at the git log.
 
 Package maintainers and users who have to manually update their installation
-may want to subscribe to `GitHub's tag feed
+may want to 0.9.5
+======
+Released 2017-04-08
+
+* FIX: Khal new -i does not crash 0.9.1
+======
+Released 2017-01-25
+
+* FIX: Detecting not understood timezone information failed on Python 3.6. This may lead to erroneous offsets in start and end times for those events, as those datetimes were treated as if they were in the system's local time, not as if they are in the (possibly) configured default_timezone.
+* Python 3.6 is now officially supported.
+
+0.9.0
+======
+Released 2017-01-24
+
+Dependency Changes
+------------------
+* Vdirsyncer isn't a hard dependency anymore.
+
+Bug Fixes
+---------
+* Fixed various bugs in `configure`.
+* Fix bug in `new` that surfaces when date(time)format does contain a year.
+* Fix bug in `import` that allows importing into read-only and/or non-default calendar.
+* Fix how color discovered in calendars.ts run with the latest pytz (2017.2).
+
+0.9.4
+======
+Released 2017-03-30
+
+* FIX: Ikhal's event editor now warns before allowing to edit recurrence rules it doesn't understand. tag feed
 <https://github.com/geier/khal/tags.atom>`_.
 
 0.11.3

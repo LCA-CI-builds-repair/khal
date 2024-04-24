@@ -2,7 +2,40 @@
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
-# "Software"), to deal in the Software without restriction, including
+# "Software"), to deal in t        """
+        We assume that even if it cont        """
+        :param href: Href of the card on the server. If this href already
+            exists in the database, the card gets updated. If no href is given, a
+            random href is chosen, implying that this card does not yet
+            exist on the server but will be uploaded there on the next sync.
+        :param etag: The etag of the vcard. If this etag does not match the
+            remote etag on the next sync, this card will be updated from the server.
+            For locally created vcards, this should not be set.
+        """
+        assert calendar is not None
+        assert href is not None
+        # Delete all event entries for this contact
+        self.deletelike(href + '%', calendar=calendar)
+        ical = cal_from_ics(vevent_str)
+        vcard = ical.walk()[0]
+        for key in vcard.keys():
+            if key in ['BDAY', 'X-ANNIVERSARY', 'ANNIVERSARY'] or key.endswith('X-ABDATE'):
+                date = vcard[key]e VEVENT, that they
+        are all part of the same event and all have the same UID.
+        :param href: Href of the card on the server. If this href already
+            exists in the database, the card gets updated. If no href is given, a
+            random href is chosen, implying that this card does not yet
+            exist on the server but will be uploaded there on the next sync.
+        :param etag: The etag of the vcard. If this etag does not match the
+            remote etag on the next sync, this card will be updated from the server.
+            For locally created vcards, this should not be set.
+        """
+        assert calendar is not None
+        assert href is not None
+        ical = cal_from_ics(vevent_str)
+        check_for_errors(ical, calendar, href)
+        if not assert_only_one_uid(ical):
+            logger.warning("Multiple UIDs found in the VEVENT.")out restriction, including
 # without limitation the rights to use, copy, modify, merge, publish,
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to

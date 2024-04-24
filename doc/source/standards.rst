@@ -1,7 +1,14 @@
 Standards
 =========
 
-*khal* tries to follow standards and RFCs (most importantly :rfc:`5545`
+*khal* While the RFC states:
+
+"A calendar entry with a 'DTSTART' property but no 'DTEND' property does not take up any time. It is intended to represent an event that is associated with a given calendar date and time of day, such as an anniversary. Since the event does not take up any time, it must not be used to record busy time regardless of the value for the 'TRANSP' property."
+
+khal transforms those events into all-day events lasting for one day (the start date). As long as those events do not get edited, these changes will not be written to the vdir (and with that to the CalDAV server). Any timezone information that was associated with the start date gets discarded.
+
+**Note:**
+While the main rationale for this behavior was laziness on the part of khal's main author, other calendar software shows the same behavior (e.g. Google Calendar and Evolution).dards and RFCs (most importantly :rfc:`5545`
 *iCalendar*) wherever possible. Known intentional and unintentional deviations
 are listed below.
 

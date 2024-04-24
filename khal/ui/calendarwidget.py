@@ -1,6 +1,30 @@
 # Copyright (c) 2013-2022 khal contributors
 #
-# Permission is hereby granted, free of charge, to any person obtaining
+# Permissionfrom typing import Tuple
+import urwid
+
+class DigitWidget(urwid.Text):
+    def __init__(self, digit: str) -> None:
+        super().__init__(digit)
+
+    @classmethod
+    def selectable(cls: type) -> bool:
+        return True
+
+    def keypress(self, size: Tuple[int], key: str) -> str:
+        return key
+
+    def get_cursor_coords(self, size: Tuple[int]) -> Tuple[int, int]:
+        return 1, 0
+
+    def render(self, size: Tuple[int], focus: bool = False) -> urwid.Canvas:
+        canv = super().render(size, focus)
+        if focus:
+            canv = urwid.CompositeCanvas(canv)
+            canv.cursor = 1, 0
+        return canv
+
+class Date(urwid.WidgetWrap): of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
 # "Software"), to deal in the Software without restriction, including
 # without limitation the rights to use, copy, modify, merge, publish,

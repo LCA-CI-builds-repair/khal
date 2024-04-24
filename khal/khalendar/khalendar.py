@@ -2,7 +2,55 @@
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
-# "Software"), to deal in the Software without restriction, including
+# "Software"), to deal in the Software            try:
+                event.href, event.etag = self._stora    def move_event_to_collection(self, event: Event, new_collection: str) -> None:
+        """Moves    def update_event_in_database(self, calendar: str, href: str) -> bool:
+        """Should only be called during db_update, only updates the db, does not check for readonly"""
+        event, etag = self._storages[calendar].get(href)
+        try:
+            if self._calendars[calendar].get('ctype') == 'birthdays':
+                update = self._backend.update_vcf_dates
+            else:
+                update = self._backend.update
+            update(event.raw, href=href, etag=etag, calendar=calendar)
+            return True
+        except (UpdateFailed, UnsupportedFeatureError, NonUniqueUID) as e:
+            logger.warning(
+                f'Skipping {calendar}/{href}: {str(e)}\n'
+                'This event will not be available in khal.'
+            )
+        except Exception as e:
+            logger.exception('Unknown exception happened.')w collection (calendar)"""
+        href, etag, calendar = event.href, event.etag, event.calendar
+        event.etag = None
+        self.insert(event, new_collection)
+        assert href is not None
+        assert calendar is not None
+        self.delete(href, etag, calendar=calendar)
+
+    def create_event_from_ics(self,
+                              ical: str,
+                              calendar_name: str,
+                              etag: Optional[str] = None,
+                              href: Optional[str] = None,
+                              ) -> Event:
+        """Creates and returns (but does not insert) a new event from iCal string"""
+        calendar = calendar_name or self.writable_names[0]
+        return Event.fromString(ical, locale=self._locale, calendar=calendar, etag=etag, href=href)ad(event)
+            except AlreadyExistingError as error:
+                href = getattr(error, 'existing_href', None)
+                raise DuplicateUid(href)
+            self._backend.update(event.raw, event.href, event.etag, calendar=calendar)
+            self._backend.set_ctag(self._local_ctag(calendar), calendar=calendar)
+
+    def delete(self, href: str, etag: Optional[str], calendar: str) -> None:
+        """Delete an event specified by `href` from `calendar`"""
+        if self._calendars[calendar]['readonly']:
+            raise ReadOnlyCalendarError()
+        try:
+            self._storages[calendar].delete(href, etag)
+        except WrongEtagError:
+            raise EtagMismatch()tion, including
 # without limitation the rights to use, copy, modify, merge, publish,
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to

@@ -10,8 +10,8 @@ has been specified. This is intentional.
 
 Options
 -------
-:program:`khal` (without any commands) has some options to print some
-information about :program:`khal`:
+:program:`khal` (without any commands) has some options to print Adds a new event starting today at 18:00 with summary 'awesome event' (lasting for the default time of one hour) to the default calendar
+bout :program:`khal`:
 
 .. option:: --version
 

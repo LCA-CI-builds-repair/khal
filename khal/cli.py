@@ -6,7 +6,26 @@
 # without limitation the rights to use, copy, modify, merge, publish,
 # distribute, sublicense, and/or sell copies of the Software, and to
 # permit persons to whom the Software is furnished to do so, subject to
-# the following conditions:
+# the if import_from_stdin:
+    try    @multi_calendar_option
+    @mouse_option
+    @click.pass_context
+    def interactive(ctx: click.Context, include_calendar: str, exclude_calendar: str, mouse: bool) -> None:
+        '''Interactive UI. Also launchable via `ikhal`.'''
+        if mouse is not None:
+            ctx.obj['conf']['default']['enable_mouse'] = mouse
+        controllers.interactive(
+            build_collection(
+                ctx.obj['conf'],
+                multi_calendar_select(ctx, include_calendar, exclude_calendar)
+            ),
+            ctx.obj['conf']
+        ) open('/dev/tty', 'r') as tty_file:
+            ics_strs = ((tty_file.read(), tty_file.name),)
+    except FileNotFoundError:
+        logger.warning('/dev/tty does not exist, importing might not work')
+else:
+    ics_strs = ((ics_file.read(), ics_file.name) for ics_file in ics)wing conditions:
 #
 # The above copyright notice and this permission notice shall be
 # included in all copies or substantial portions of the Software.

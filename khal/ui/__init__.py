@@ -1,6 +1,82 @@
 # Copyright (c) 2013-2022 khal contributors
 #
-# Permission is hereby granted, free of charge, to any person obtaining
+# Permission is hereby granted, from typing import Tuple, Optional
+import urwid
+
+ALL = 0
+INSTANCES = 1
+
+class Datefrom typing import Tuple
+import datetime as dt
+import urwid
+import khal.event
+
+class EventDisplay(urwid.Text):
+    def __init__(self, event: khal.event.Event, delete_status: bool, this_date: dt.date, conf: dict, relative: bool = False):
+        """
+        :type event: khal.event.Event
+        """
+        if relativefrom typing import List
+import datetime as dt
+
+class SomeClass:
+    def __init__(self):
+        self._last_day = dt.date.today()
+        self._first_day = dt.date.today()
+    
+    def _append(self):
+        """Append the next day's events to the display"""
+        self._last_day += dt.timedelta(days=1)
+        pile = self._get_events(self._last_day)
+        self.append(pile)
+
+    def _autoprepend(self):
+        """Prepend the day before the first day to the display"""
+        # We need to actively reset the last element's attribute, as their
+        # render() method does not get called otherwise, and they would
+        # be indicated as the currently selected date
+        self[self.focus or 0].reset_style()
+        self._first_day -= dt.timedelta(days=1)
+        pile = self._get_events(self._first_day)  if isinstance(this_date, dt.datetime) or not isinstance(this_date, dt.date):
+                raise ValueError(f'`this_date` is of type `{type(this_date)}`, should be `datetime.date`')
+        self.event = event
+        self.delete_status = delete_status
+        self.this_date = this_date
+        self._conf = conf
+        self.relative = relative
+        super().__init__('', wrap='clip')
+        self.set_title()
+
+    def get_cursor_coords(self, size: Tuple[int, int]) -> Tuple[int, int]:
+        return 0, 0
+
+    def render(self, size: Tuple[int, int], focus: bool = False) -> urwid.Canvas:
+        canv = super().render(size, focus)
+        if focus:
+            canv = urwid.CompositeCanvas(canv)
+            canv.cursor = 0, 0
+        return canv
+
+    @classmethod
+    def selectable(cls) -> bool:
+        return True    pass
+
+class SelectableText(urwid.Text):
+    def selectable(self) -> bool:
+        return True
+
+    def keypress(self, size: Tuple[int], key: Optional[str]) -> Optional[str]:
+        return key
+
+    def get_cursor_coords(self, size: Tuple[int]) -> Tuple[int, int]:
+        return 0, 0
+
+    def render(self, size: Tuple[int], focus: bool = False) -> urwid.Canvas:
+        canv = super().render(size, focus)
+        if focus:
+            canv = urwid.CompositeCanvas(canv)
+            canv.cursor = 0, 0
+        return canvson obtaining
 # a copy of this software and associated documentation files (the
 # "Software"), to deal in the Software without restriction, including
 # without limitation the rights to use, copy, modify, merge, publish,
