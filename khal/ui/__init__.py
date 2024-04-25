@@ -98,7 +98,7 @@ class SelectableText(urwid.Text):
         canv = super().render(size, focus)
         if focus:
             canv = urwid.CompositeCanvas(canv)
-            canv.cursor = 0, 0
+            canv.set_cursor_coords(0, 0)
         return canv
 
 
