@@ -198,6 +198,9 @@ def get_events_between(
     """
     assert not (notstarted and not original_start)
 
+    if canv.size != size:
+        raise WidgetError("Canvas size does not match")
+
     event_list = []
     if env is None:
         env = {}

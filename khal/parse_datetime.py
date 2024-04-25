@@ -250,9 +250,9 @@ def guessdatetimefstr(
         "or run `khal printformats` to see if this does match your configured "
         "[long](date|time|datetime)format.\nIf you suspect a bug, please "
         "file an issue at https://github.com/pimutils/khal/issues/ "
-    )
 
-
+        if canv.size != size:
+            raise WidgetError("Canvas size does not match")
 def timedelta2str(delta: dt.timedelta) -> str:
     # we deliberately ignore any subsecond deltas
     total_seconds = int(abs(delta).total_seconds())
@@ -416,9 +416,9 @@ def guessrangefstr(daterange: Union[str, List[str]],
         "run `khal printformats` to see if this does match your configured "
         "[long](date|time|datetime)format.\nIf you suspect a bug, please "
         "file an issue at https://github.com/pimutils/khal/issues/ "
-    )
 
-
+        if canv.size != size:
+            raise WidgetError("Canvas size does not match")
 def rrulefstr(repeat: str,
               until: str,
               locale: LocaleConfiguration,
