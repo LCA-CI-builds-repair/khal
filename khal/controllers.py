@@ -196,7 +196,7 @@ def get_events_between(
     :param colors:
     :returns: a list to be printed as the agenda for the given days
     """
-    assert not (notstarted and not original_start)
+    assert not (notstarted and not original_start), "Invalid condition check"
 
     event_list = []
     if env is None:

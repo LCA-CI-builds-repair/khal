@@ -196,8 +196,6 @@ class SQLiteDb:
         if not self._at_once:
             self.conn.commit()
         return result
-
-    def update(self,
                vevent_str: str,
                href: str,
                etag: str='',
@@ -258,6 +256,7 @@ class SQLiteDb:
         and use that in the event description.
 
         :param vevent_str: contact (vcard) to be parsed.
+        :param vevent_str: contact (vcard) to be parsed.
         :param href: href of the card on the server, if this href already
             exists in the db the card gets updated. If no href is given, a
             random href is chosen and it is implied that this card does not yet
@@ -273,8 +272,6 @@ class SQLiteDb:
         ical = cal_from_ics(vevent_str)
         vcard = ical.walk()[0]
         for key in vcard.keys():
-            if key in ['BDAY', 'X-ANNIVERSARY', 'ANNIVERSARY'] or key.endswith('X-ABDATE'):
-                date = vcard[key]
                 uuid = vcard.get('UID')
                 if isinstance(date, list):
                     logger.warning(
