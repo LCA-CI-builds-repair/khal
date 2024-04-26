@@ -93,7 +93,7 @@ def _get_text(event_name):
         directory = './ics/'
 
     with open(os.path.join(directory, event_name + '.ics'), 'rb') as f:
-        rv = f.read().decode('utf-8')
+    rv = f.read().decode('utf-8')
 
     return rv
 

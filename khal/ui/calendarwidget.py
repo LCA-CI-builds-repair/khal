@@ -71,11 +71,11 @@ class DatePart(urwid.Text):
         return 1, 0
 
     def render(self, size: Tuple[int], focus: bool=False) -> urwid.Canvas:
-        canv = super().render(size, focus)
-        if focus:
-            canv = urwid.CompositeCanvas(canv)
-            canv.cursor = 1, 0
-        return canv
+    canv = super().render(size, focus)
+    if focus:
+        canv = urwid.CompositeCanvas([canv])
+        canv.cursor = (1, 0)
+    return canv
 
 
 class Date(urwid.WidgetWrap):

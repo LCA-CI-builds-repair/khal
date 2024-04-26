@@ -259,50 +259,51 @@ def test_config_checks(metavdirs):
                 'type': 'calendar',
                 'priority': 10,
             },
-            'work': {
-                'color': None,
-                'path': '/cal3/work',
-                'readonly': False,
-                'type': 'calendar',
-                'priority': 10,
-            },
-            'cfgcolor': {
-                'color': 'dark blue',
-                'path': '/cal4/cfgcolor',
-                'readonly': False,
-                'type': 'calendar',
-                'priority': 10,
-            },
-            'dircolor': {
-                'color': 'dark blue',
-                'path': '/cal4/dircolor',
-                'readonly': False,
-                'type': 'calendar',
-                'priority': 10,
-            },
-            'cfgcolor_again': {
-                'color': 'dark blue',
-                'path': '/cal4/cfgcolor_again',
-                'readonly': False,
-                'type': 'calendar',
-                'priority': 10,
-            },
-            'cfgcolor_once_more': {
-                'color': 'dark blue',
-                'path': '/cal4/cfgcolor_once_more',
-                'readonly': False,
-                'type': 'calendar',
-                'priority': 10,
-            },
+{
+    'work': {
+        'color': None,
+        'path': '/cal3/work',
+        'readonly': False,
+        'type': 'calendar',
+        'priority': 10,
+    },
+    'cfgcolor': {
+        'color': 'dark blue',
+        'path': '/cal4/cfgcolor',
+        'readonly': False,
+        'type': 'calendar',
+        'priority': 10,
+    },
+    'dircolor': {
+        'color': 'dark blue',
+        'path': '/cal4/dircolor',
+        'readonly': False,
+        'type': 'calendar',
+        'priority': 10,
+    },
+    'cfgcolor_again': {
+        'color': 'dark blue',
+        'path': '/cal4/cfgcolor_again',
+        'readonly': False,
+        'type': 'calendar',
+        'priority': 10,
+    },
+    'cfgcolor_once_more': {
+        'color': 'dark blue',
+        'path': '/cal4/cfgcolor_once_more',
+        'readonly': False,
+        'type': 'calendar',
+        'priority': 10,
+    },
+}
 
         },
-        'default': {'default_calendar': None},
-        'locale': {'default_timezone': 'Europe/Berlin', 'local_timezone': 'Europe/Berlin'},
-        'sqlite': {'path': '/tmp'},
-    }
+{
+    'sqlite': {'path': '/tmp'},
+}
 
-    assert config['calendars'] == test_config['calendars']
-    assert config == test_config
+assert config['calendars'] == test_config['calendars']
+assert config == test_config
 
 
 def test_is_color():
