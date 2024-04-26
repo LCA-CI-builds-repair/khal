@@ -412,10 +412,10 @@ def guessrangefstr(daterange: Union[str, List[str]],
             pass
 
     raise DateTimeParseError(
-        f"Could not parse \"{daterange}\".\nPlease check your configuration or "
-        "run `khal printformats` to see if this does match your configured "
-        "[long](date|time|datetime)format.\nIf you suspect a bug, please "
-        "file an issue at https://github.com/pimutils/khal/issues/ "
+parsed_message = f"Could not parse \"{daterange}\".\nPlease check your configuration or " \
+                 "run `khal printformats` to see if this does match your configured " \
+                 "[long](date|time|datetime)format.\nIf you suspect a bug, please " \
+                 "file an issue at https://github.com/pimutils/khal/issues/ "
     )
 
 
