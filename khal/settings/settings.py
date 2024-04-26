@@ -99,7 +99,7 @@ def get_config(
     if config_path is None:
         config_path = find_configuration_file()
     if config_path is None or not os.path.exists(config_path):
-        raise NoConfigFile()
+        raise WidgetError("Configuration file does not exist.")
 
     logger.debug(f'using the config file at {config_path}')
 

@@ -184,14 +184,15 @@ def find_vdir():
     asks user to confirm it. If not, prompt the user for the path to a single
     vdir.
     """
-    print("The following calendars were found:")
     synced_vdirs = get_vdirs_from_vdirsyncer_config()
     if synced_vdirs:
+        print("The following calendars were found:")
         print(f"Found {len(synced_vdirs)} calendars from vdirsyncer")
         for name, path, _ in synced_vdirs:
             print(f'  {name}: {compressuser(path)}')
         if confirm("Use these calendars for khal?", default=True):
             return synced_vdirs
+    # Prompt the user for the path to a single vdir if no synced vdirs are found
 
     vdir_path = prompt("Enter the path to a vdir calendar")
     vdir_path = normpath(expanduser(expandvars(vdir_path)))

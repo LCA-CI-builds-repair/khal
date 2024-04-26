@@ -197,7 +197,7 @@ class SQLiteDb:
             self.conn.commit()
         return result
 
-    def update(self,
+    def update(self, ...):
                vevent_str: str,
                href: str,
                etag: str='',
@@ -226,6 +226,7 @@ class SQLiteDb:
         if not assert_only_one_uid(ical):
             logger.warning(
                 f"The .ics file at {calendar}/{href} contains multiple UIDs.\n"
+            )
                 "This should not occur in vdir .ics files.\n"
                 "If you didn't edit the file by hand, please report a bug "
                 "at https://github.com/pimutils/khal/issues .\n"
@@ -258,7 +259,6 @@ class SQLiteDb:
         and use that in the event description.
 
         :param vevent_str: contact (vcard) to be parsed.
-        :param href: href of the card on the server, if this href already
             exists in the db the card gets updated. If no href is given, a
             random href is chosen and it is implied that this card does not yet
             exist on the server, but will be uploaded there on next sync.
@@ -275,6 +275,7 @@ class SQLiteDb:
         for key in vcard.keys():
             if key in ['BDAY', 'X-ANNIVERSARY', 'ANNIVERSARY'] or key.endswith('X-ABDATE'):
                 date = vcard[key]
+                uuid = vcard.get('UID')
                 uuid = vcard.get('UID')
                 if isinstance(date, list):
                     logger.warning(

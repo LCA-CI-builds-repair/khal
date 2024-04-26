@@ -198,6 +198,10 @@ def get_events_between(
     """
     assert not (notstarted and not original_start)
 
+    def check_canv_size(canv, expected_size):
+        if canv.size != expected_size:
+            raise WidgetError("Canv size does not match expected size.")
+
     event_list = []
     if env is None:
         env = {}
@@ -638,10 +642,6 @@ def interactive(collection, conf):
 
 
 def import_ics(collection, conf, ics, batch=False, random_uid=False, format=None,
-               env=None):
-    """
-    :param batch: setting this to True will insert without asking for approval,
-                  even when an event with the same uid already exists
     :type batch: bool
     :param random_uid: whether to assign a random UID to imported events or not
     :type random_uid: bool
@@ -651,6 +651,10 @@ def import_ics(collection, conf, ics, batch=False, random_uid=False, format=None
     if format is None:
         format = conf['view']['event_format']
     try:
+        vevents = split_ics(ics, random_uid, conf['locale']['default_timezone'])
+    except Exception as error:
+        raise FatalError(error)
+    for vevent in vevents:
         vevents = split_ics(ics, random_uid, conf['locale']['default_timezone'])
     except Exception as error:
         raise FatalError(error)

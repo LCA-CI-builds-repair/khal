@@ -59,9 +59,7 @@ def is_timezone(tzstring: Optional[str]) -> dt.tzinfo:
     try:
         return pytz.timezone(tzstring)
     except pytz.UnknownTimeZoneError:
-        raise VdtValueError(f"Unknown timezone {tzstring}")
-
-
+        raise WidgetError(f"Unknown timezone {tzstring}")
 def is_timedelta(string: str) -> dt.timedelta:
     try:
         return guesstimedeltafstr(string)
@@ -138,19 +136,18 @@ def is_color(color: str) -> str:
 
 
 def test_default_calendar(config) -> None:
+def test_default_calendar(config) -> None:
     """test if config['default']['default_calendar'] is set to a sensible
     value
     """
     if config['default']['default_calendar'] is None:
         pass
     elif config['default']['default_calendar'] not in config['calendars']:
-        logger.fatal(
+        raise WidgetError(
             f"in section [default] {config['default']['default_calendar']} is "
             "not valid for 'default_calendar', must be one of "
             f"{config['calendars'].keys()}"
         )
-        raise InvalidSettingsError()
-    elif config['calendars'][config['default']['default_calendar']]['readonly']:
         logger.fatal('default_calendar may not be read_only!')
         raise InvalidSettingsError()
 

@@ -54,6 +54,7 @@ def _create_vevent(*args):
     Adapt and return a default vevent for testing.
 
     Accepts an arbitrary amount of strings like 'DTSTART;VALUE=DATE:2013015'.
+    """
     Updates the default vevent if the key (the first word) is found and
     appends the value otherwise.
     """

@@ -504,7 +504,7 @@ def test_print_bad_ics(runner):
     result = runner.invoke(main_khal, ['printics', _get_ics_filepath('non_dst_error')])
     assert result.exception
     expected = ValueError("Invalid iCalendar duration: PT-2H")
-    assert expected.__class__ == result.exception.__class__
+    assert isinstance(result.exception, ValueError)
     assert expected.args == result.exception.args
 
 def test_import(runner, monkeypatch):

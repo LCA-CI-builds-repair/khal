@@ -108,6 +108,11 @@ def weekdaypstr(dayname: str) -> int:
     :return: number of the day in a week
     """
 
+    valid_daynames = ['monday', 'mon', 'tuesday', 'tue', 'wednesday', 'wed', 'thursday', 'thu', 'friday', 'fri', 'saturday', 'sat', 'sunday', 'sun']
+
+    if dayname not in valid_daynames:
+        raise WidgetError("Invalid dayname abbreviation provided.")
+
     if dayname in ['monday', 'mon']:
         return 0
     if dayname in ['tuesday', 'tue']:
@@ -238,11 +243,6 @@ def guessdatetimefstr(
     ]:
         # if a `short` format contains a year, treat it as a `long` format
         if infer_year and '97' in dt.datetime(1997, 10, 11).strftime(dtformat):
-            infer_year = False
-        try:
-            dtstart = fun(dtime_list, dtformat, infer_year=infer_year)
-        except (ValueError, DateTimeParseError):
-            pass
         else:
             return dtstart, all_day
     raise DateTimeParseError(
@@ -253,6 +253,14 @@ def guessdatetimefstr(
     )
 
 
+def timedelta2str(delta: dt.timedelta) -> str:
+    if delta is None:
+        raise WidgetError("Invalid timedelta provided.")
+    
+    # we deliberately ignore any subsecond deltas
+    total_seconds = int(abs(delta).total_seconds())
+
+    seconds = total_seconds % 60
 def timedelta2str(delta: dt.timedelta) -> str:
     # we deliberately ignore any subsecond deltas
     total_seconds = int(abs(delta).total_seconds())
@@ -412,13 +420,17 @@ def guessrangefstr(daterange: Union[str, List[str]],
             pass
 
     raise DateTimeParseError(
-        f"Could not parse \"{daterange}\".\nPlease check your configuration or "
-        "run `khal printformats` to see if this does match your configured "
-        "[long](date|time|datetime)format.\nIf you suspect a bug, please "
-        "file an issue at https://github.com/pimutils/khal/issues/ "
-    )
+              until: str,
+              locale: LocaleConfiguration,
+              timezone: Optional[dt.tzinfo],
+              ) -> RRuleMapType:
+    valid_repeat_options = ["daily", "weekly", "monthly", "yearly"]
 
+    if repeat not in valid_repeat_options:
+        raise WidgetError("Invalid repeat option provided.")
 
+    rrule_settings: RRuleMapType = {'freq': repeat}
+    if until:
 def rrulefstr(repeat: str,
               until: str,
               locale: LocaleConfiguration,

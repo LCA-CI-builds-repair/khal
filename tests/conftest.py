@@ -139,12 +139,10 @@ def sleep_time(tmpdir_factory):
         i = i * 10
 
     # This should never happen, but oh, well:
-    raise Exception(
+    raise WidgetError(
         'Filesystem does not seem to save modified times of files. \n'
         'Cannot run tests that depend on this.'
     )
-
-
 @pytest.fixture
 def fix_caplog(monkeypatch):
     """Temporarily undoes the logging setup by click-log such that the caplog fixture can be used"""

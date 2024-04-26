@@ -169,7 +169,7 @@ def test_event_recuid_rrule_no_master():
         dt.datetime(2010, 1, 1, 0, 0), dt.datetime(2020, 1, 1, 0, 0),
     )
     events = sorted(events, key=itemgetter(2))
-    assert len(list(events)) == 2
+    assert len(events) == 2
     assert events[0][2] == dt.datetime(2014, 6, 30, 7, 30)
     assert events[0][3] == dt.datetime(2014, 6, 30, 12, 0)
     assert events[1][2] == dt.datetime(2014, 7, 7, 8, 30)
