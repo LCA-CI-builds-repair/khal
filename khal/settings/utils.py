@@ -147,12 +147,12 @@ def test_default_calendar(config) -> None:
         logger.fatal(
             f"in section [default] {config['default']['default_calendar']} is "
             "not valid for 'default_calendar', must be one of "
-            f"{config['calendars'].keys()}"
-        )
-        raise InvalidSettingsError()
-    elif config['calendars'][config['default']['default_calendar']]['readonly']:
-        logger.fatal('default_calendar may not be read_only!')
-        raise InvalidSettingsError()
+        f"{config['calendars'].keys()}"
+    )
+    raise InvalidSettingsError()
+elif config['calendars'][config['default']['default_calendar']]['readonly']:
+    logger.fatal('default_calendar may not be read_only!')
+    raise InvalidSettingsError()
 
 
 def get_color_from_vdir(path: str) -> Optional[str]:

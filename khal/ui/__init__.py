@@ -92,8 +92,6 @@ class SelectableText(urwid.Text):
         return key
 
     def get_cursor_coords(self, size: Tuple[int]) -> Tuple[int, int]:
-        return 0, 0
-
     def render(self, size, focus=False):
         canv = super().render(size, focus)
         if focus:
@@ -177,10 +175,10 @@ class U_Event(urwid.Text):
         return 0, 0
 
     def render(self, size, focus=False):
+    def render(self, size, focus=False):
         canv = super().render(size, focus)
         if focus:
             canv = urwid.CompositeCanvas(canv)
-            canv.cursor = 0, 0
         return canv
 
     @classmethod

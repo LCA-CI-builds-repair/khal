@@ -416,7 +416,6 @@ def guessrangefstr(daterange: Union[str, List[str]],
         "run `khal printformats` to see if this does match your configured "
         "[long](date|time|datetime)format.\nIf you suspect a bug, please "
         "file an issue at https://github.com/pimutils/khal/issues/ "
-    )
 
 
 def rrulefstr(repeat: str,

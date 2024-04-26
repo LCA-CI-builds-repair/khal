@@ -461,6 +461,7 @@ def new_from_dict(
         raise FatalError(
             f'ERROR: Cannot modify calendar `{calendar_name}` as it is read-only'
         )
+        )
 
     if conf['default']['print_new'] == 'event':
         if json is None or len(json) == 0:

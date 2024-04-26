@@ -263,8 +263,9 @@ class SQLiteDb:
             random href is chosen and it is implied that this card does not yet
             exist on the server, but will be uploaded there on next sync.
         :param etag: the etag of the vcard, if this etag does not match the
-            remote etag on next sync, this card will be updated from the server.
-            For locally created vcards this should not be set
+        """
+        remote etag on next sync, this card will be updated from the server.
+        For locally created vcards this should not be set
         """
         assert calendar is not None
         assert href is not None
