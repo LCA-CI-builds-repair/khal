@@ -64,25 +64,15 @@ logger = logging.getLogger('khal')
 #   │ │                 │  │ │ │ ┌─BoxAdapter───────────┐ │ │ │ │
 #   │ │                 │  │ │ │ │                      │ │ │ │ │
 #   │ │                 │  │ │ │ │ ┌─DateListBox──────┐ │ │ │ │ │
-#   │ │                 │  │ │ │ │ │ DateHeader       │ │ │ │ │ │
-#   │ │                 │  │ │ │ │ │ U_Event          │ │ │ │ │ │
-#   │ │                 │  │ │ │ │ │  ...             │ │ │ │ │ │
-#   │ │                 │  │ │ │ │ │ U_Event          │ │ │ │ │ │
-#   │ │                 │  │ │ │ │ └──────────────────┘ │ │ │ │ │
-#   │ │                 │  │ │ │ └──────────────────────┘ │ │ │ │
-#   │ │                 │  │ │ └──────────────────────────┘ │ │ │
-#   │ │                 │  │ └──────────────────────────────┘ │ │
-#   │ └─────────────────┘  └──────────────────────────────────┘ │
-#   └───────────────────────────────────────────────────────────┘
+import urwid
+from typing import Tuple, Optional
 
-class DeletionType(IntEnum):
+class DeletionType(urwid.IntEnum):
     ALL = 0
     INSTANCES = 1
 
-
 class DateConversionError(Exception):
     pass
-
 
 class SelectableText(urwid.Text):
     def selectable(self) -> bool:
@@ -94,7 +84,7 @@ class SelectableText(urwid.Text):
     def get_cursor_coords(self, size: Tuple[int]) -> Tuple[int, int]:
         return 0, 0
 
-    def render(self, size, focus=False):
+    def render(self, size: Tuple[int], focus: bool = False):
         canv = super().render(size, focus)
         if focus:
             canv = urwid.CompositeCanvas(canv)
