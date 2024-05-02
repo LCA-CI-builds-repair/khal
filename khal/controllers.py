@@ -191,13 +191,12 @@ def get_events_between(
     :param nostarted: True if each event should start after start (instead of
       be active between start and end)
     :param env: a collection of "static" values like calendar names and color
-    :param original_start: start datetime to compare against of notstarted is set
+    :param original_start: start datetime to compare against if not started is set
     :param seen:
     :param colors:
     :returns: a list to be printed as the agenda for the given days
     """
     assert not (notstarted and not original_start)
-
     event_list = []
     if env is None:
         env = {}
