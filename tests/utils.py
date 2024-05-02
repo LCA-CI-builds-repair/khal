@@ -92,11 +92,14 @@ def _get_text(event_name):
     if directory == '/ics/':
         directory = './ics/'
 
+import os
+import icalendar
+
+def _get_vcalendar_file(event_name, directory):
     with open(os.path.join(directory, event_name + '.ics'), 'rb') as f:
         rv = f.read().decode('utf-8')
 
     return rv
-
 
 def _get_vevent_file(event_path):
     directory = '/'.join(__file__.split('/')[:-1]) + '/ics/'
@@ -106,6 +109,7 @@ def _get_vevent_file(event_path):
         )
     for component in ical.walk():
         if component.name == 'VEVENT':
+            return component
             return component
 
 

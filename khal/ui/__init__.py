@@ -100,6 +100,7 @@ class SelectableText(urwid.Text):
             canv = urwid.CompositeCanvas(canv)
             canv.cursor = 0, 0
         return canv
+        return canv
 
 
 class DateHeader(SelectableText):

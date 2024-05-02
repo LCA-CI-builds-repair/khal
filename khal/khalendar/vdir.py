@@ -244,9 +244,10 @@ class VdirBase:
             raise NotFoundError(item.uid)
         actual_etag = get_etag_from_file(fpath)
         if etag != actual_etag:
-            raise WrongEtagError(etag, actual_etag)
+            raise WrongETagError(etag, actual_etag)
 
         if not isinstance(item.raw, str):
+            # Add your code block here
             raise TypeError('item.raw must be a unicode string.')
 
         with atomic_write(fpath, mode='wb', overwrite=True) as f:

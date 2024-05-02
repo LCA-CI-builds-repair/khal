@@ -422,7 +422,7 @@ def guessrangefstr(daterange: Union[str, List[str]],
 def rrulefstr(repeat: str,
               until: str,
               locale: LocaleConfiguration,
-              timezone: Optional[dt.tzinfo],
+              timezone: Optional[dt.tzinfo]
               ) -> RRuleMapType:
     if repeat in ["daily", "weekly", "monthly", "yearly"]:
         rrule_settings: RRuleMapType = {'freq': repeat}
@@ -436,8 +436,7 @@ def rrulefstr(repeat: str,
                 rrule_settings['until'] = until_dt
         return rrule_settings
     else:
-        logger.fatal("Invalid value for the repeat option. \
-                Possible values are: daily, weekly, monthly or yearly")
+        logger.fatal("Invalid value for the repeat option. Possible values are: daily, weekly, monthly or yearly")
         raise FatalError()
 
 

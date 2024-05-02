@@ -154,9 +154,9 @@ def test_default_calendar(config) -> None:
         logger.fatal('default_calendar may not be read_only!')
         raise InvalidSettingsError()
 
-
 def get_color_from_vdir(path: str) -> Optional[str]:
     try:
+        # Add your code block here
         color = Vdir(path, '.ics').get_meta('color')
     except CollectionNotFoundError:
         color = None

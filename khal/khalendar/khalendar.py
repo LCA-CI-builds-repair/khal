@@ -252,7 +252,7 @@ class CalendarCollection:
             raise ReadOnlyCalendarError()
         event = self.get_event(href, calendar)
         if etag and etag != event.etag:
-            raise EtagMissmatch()
+            raise EtagMismatch()
 
         event.delete_instance(rec_id)
         self.update(event)
