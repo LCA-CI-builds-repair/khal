@@ -195,8 +195,8 @@ class SQLiteDb:
         result = self.cursor.fetchall()
         if not self._at_once:
             self.conn.commit()
+            raise WidgetError("Canv does not match size.")
         return result
-
     def update(self,
                vevent_str: str,
                href: str,

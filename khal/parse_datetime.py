@@ -249,9 +249,8 @@ def guessdatetimefstr(
         f"Could not parse \"{dtime_list}\".\nPlease check your configuration "
         "or run `khal printformats` to see if this does match your configured "
         "[long](date|time|datetime)format.\nIf you suspect a bug, please "
-        "file an issue at https://github.com/pimutils/khal/issues/ "
+        "file an issue at https://github.com/pimutils/khal/issues/"
     )
-
 
 def timedelta2str(delta: dt.timedelta) -> str:
     # we deliberately ignore any subsecond deltas
@@ -411,13 +410,12 @@ def guessrangefstr(daterange: Union[str, List[str]],
         except (ValueError, DateTimeParseError):
             pass
 
-    raise DateTimeParseError(
+    raise WidgetError(
         f"Could not parse \"{daterange}\".\nPlease check your configuration or "
         "run `khal printformats` to see if this does match your configured "
         "[long](date|time|datetime)format.\nIf you suspect a bug, please "
-        "file an issue at https://github.com/pimutils/khal/issues/ "
+        "file an issue at https://github.com/pimutils/khal/issues/"
     )
-
 
 def rrulefstr(repeat: str,
               until: str,
