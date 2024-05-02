@@ -86,20 +86,20 @@ class DateConversionError(Exception):
 
 class SelectableText(urwid.Text):
     def selectable(self) -> bool:
-        return True
+from typing import Tuple, Optional
 
-    def keypress(self, size: Tuple[int], key: Optional[str]) -> Optional[str]:
-        return key
+def keypress(self, size: Tuple[int], key: Optional[str]) -> Optional[str]:
+    return key
 
-    def get_cursor_coords(self, size: Tuple[int]) -> Tuple[int, int]:
-        return 0, 0
+def get_cursor_coords(self, size: Tuple[int]) -> Tuple[int, int]:
+    return 0, 0
 
-    def render(self, size, focus=False):
-        canv = super().render(size, focus)
-        if focus:
-            canv = urwid.CompositeCanvas(canv)
-            canv.cursor = 0, 0
-        return canv
+def render(self, size, focus=False):
+    canv = super().render(size, focus)
+    if focus:
+        canv = urwid.CompositeCanvas(canv)
+        canv.cursor = 0, 0
+    return canv
 
 
 class DateHeader(SelectableText):
