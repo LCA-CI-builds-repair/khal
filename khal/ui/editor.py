@@ -1,6 +1,7 @@
 # Copyright (c) 2013-2022 khal contributors
 #
 # Permission is hereby granted, free of charge, to any person obtaining
+import sys
 # a copy of this software and associated documentation files (the
 # "Software"), to deal in the Software without restriction, including
 # without limitation the rights to use, copy, modify, merge, publish,
@@ -197,15 +198,52 @@ class StartEndEditor(urwid.WidgetWrap):
             'Allday', state=self.allday, on_state_change=self.toggle)
         self.toggle(None, self.allday)
 
-    def keypress(self, size, key):
-        return super().keypress(size, key)
+    def validate_input(self, size):
+        while self.retry_count < self.retry_limit:
+            try:
+                self.validate()
+                return
+            except ValueError as e:
+                self.retry_count += 1
+                print(f"Error: {e}. Try again.", file=sys.stderr)
+        print(f"Failed after {self.retry_limit} attempts", file=sys.stderr)
+
+    def validate(self):
+        if not isinstance(self.startdt, (int, float)) or not isinstance(self.enddt, (int, float)):
+            raise ValueError("Inputs must be numbers")
+        if self.startdt > self.enddt:
+            raise ValueError("Start date must be before end date")
+        return True
 
     @property
     def startdt(self):
+        try:
+            return self._startdt
+        except ValueError:
+            raise ValueError("Invalid start date")
+
+    @startdt.setter
+    def startdt(self, value):
+        self._startdt = value
         if self.allday and isinstance(self._startdt, dt.datetime):
             return self._startdt.date()
         else:
             return self._startdt
+
+    @property
+    def enddt(self):
+        try:
+            return self._enddt
+        except ValueError:
+            raise ValueError("Invalid end date")
+
+    @enddt.setter
+    def enddt(self, value):
+        self._enddt = value
+        if self.allday and isinstance(self._enddt, dt.datetime):
+            return self._enddt.date()
+        else:
+            return self._enddt
 
     @property
     def _start_time(self):
@@ -227,13 +265,6 @@ class StartEndEditor(urwid.WidgetWrap):
             return self.conf['locale']['default_timezone'].localize
         else:
             return self.enddt.tzinfo.localize
-
-    @property
-    def enddt(self):
-        if self.allday and isinstance(self._enddt, dt.datetime):
-            return self._enddt.date()
-        else:
-            return self._enddt
 
     @property
     def _end_time(self):
@@ -346,7 +377,9 @@ class StartEndEditor(urwid.WidgetWrap):
         return (self.startdt != self._original_start) or (self.enddt != self._original_end)
 
     def validate(self):
-        return self.startdt <= self.enddt
+        if self.startdt > self.enddt:
+            raise ValueError("Start date must be before end date")
+        return True
 
 
 class EventEditor(urwid.WidgetWrap):
