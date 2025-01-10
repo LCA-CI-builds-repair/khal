@@ -92,7 +92,7 @@ class CalendarPopUp(urwid.PopUpLauncher):
                 initial=initial_date)
             pop_up = CAttrMap(pop_up, 'calendar', ' calendar focus')
             pop_up = CAttrMap(urwid.LineBox(pop_up), 'calendar', 'calendar focus')
-            return pop_up
+            return urwid.Padding(pop_up, right=1) # added padding
 
     def get_pop_up_parameters(self):
         width = 31 if self._weeknumbers == 'right' else 28
