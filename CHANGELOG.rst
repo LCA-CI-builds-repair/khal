@@ -10,6 +10,8 @@ may want to subscribe to `GitHub's tag feed
 0.11.3
 ======
 not released yet
+* FIX resolved widget rendering issue in `test_convert_to_date` related to improper width handling in `DateEdit` and `StartEndEditor`.
+* FIX adjusted padding and alignment for urwid widgets to prevent size mismatch errors.
 
 * UPDATED REQUIREMENT urwid is now required >= 2.1.0
 * optimization in ikhal when editing events in the far future or past
