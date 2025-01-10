@@ -300,7 +300,7 @@ class StartEndEditor(urwid.WidgetWrap):
             self._end_date_change, self.conf['locale']['weeknumbers'],
             self.conf['locale']['firstweekday'],
             self.conf['view']['monthdisplay'],
-            self.conf['keybindings'],
+            self.conf.get('keybindings'),
         )
 
         if state is True:  # allday event
