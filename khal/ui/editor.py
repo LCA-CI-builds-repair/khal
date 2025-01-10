@@ -246,7 +246,7 @@ class StartEndEditor(urwid.WidgetWrap):
         try:
             startval = dt.datetime.strptime(text, self.conf['locale']['timeformat'])
             self._startdt = self.localize_start(
-                dt.datetime.combine(self._startdt.date(), startval.time()))
+                dt.datetime.combine(self._startdt.date(), startval.time()), self._startdt.tzinfo)
         except ValueError:
             return False
         else:
@@ -260,6 +260,7 @@ class StartEndEditor(urwid.WidgetWrap):
         try:
             endval = dt.datetime.strptime(text, self.conf['locale']['timeformat'])
             self._enddt = self.localize_end(dt.datetime.combine(self._enddt.date(), endval.time()))
+                                                                self._enddt.tzinfo)
         except ValueError:
             return False
         else:
