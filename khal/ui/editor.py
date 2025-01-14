@@ -129,7 +129,7 @@ class DateEdit(urwid.WidgetWrap):
         wrapped = CalendarPopUp(self._edit, on_date_change, weeknumbers,
                                 firstweekday, monthdisplay, keybindings)
         padded = CAttrMap(
-            urwid.Padding(wrapped, align='left', width=datewidth, left=0, right=1),
+            urwid.Padding(wrapped, align='left', width=('relative', 100), left=0, right=0),
             'calendar', 'calendar focus',
         )
         super().__init__(padded)
