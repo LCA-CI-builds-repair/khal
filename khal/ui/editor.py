@@ -131,7 +131,7 @@ class DateEdit(urwid.WidgetWrap):
         padded = CAttrMap(
             urwid.Padding(wrapped, align='left', width=datewidth, left=0, right=1),
             'calendar', 'calendar focus',
-        )
+        ) 
         super().__init__(padded)
 
     def _validate(self, text: str):
@@ -157,7 +157,7 @@ class DateEdit(urwid.WidgetWrap):
 
         :type date: datetime.date
         """
-        self._edit.set_edit_text(dt.date.strftime(self._dateformat))
+        self._edit.set_edit_text(date.strftime(self._dateformat))
 
 
 class StartEndEditor(urwid.WidgetWrap):
