@@ -160,7 +160,7 @@ class DateEdit(urwid.WidgetWrap):
         self._edit.set_edit_text(dt.date.strftime(self._dateformat))
 
 
-class StartEndEditor(urwid.WidgetWrap):
+class StartEndEditor(urwid.Widget):
     """Widget for editing start and end times (of an event)."""
 
     def __init__(self,
@@ -338,7 +338,7 @@ class StartEndEditor(urwid.WidgetWrap):
                  (timewidth, self.widgets.endtime)],
                 dividechars=1)
         ], focus_item=1)
-        urwid.WidgetWrap.__init__(self, columns)
+        self._w = columns
 
     @property
     def changed(self):
