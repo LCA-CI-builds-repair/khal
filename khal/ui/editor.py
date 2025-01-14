@@ -117,6 +117,8 @@ class DateEdit(urwid.WidgetWrap):
         keybindings: Optional[Dict[str, List[str]]] = None,
     ) -> None:
         datewidth = len(startdt.strftime(dateformat)) + 1
+        # Subtract 1 from datewidth to account for right padding of 1
+        inner_width = datewidth - 1
         self._dateformat = dateformat
         if startdt is None:
             startdt = dt.date.today()
@@ -129,7 +131,7 @@ class DateEdit(urwid.WidgetWrap):
         wrapped = CalendarPopUp(self._edit, on_date_change, weeknumbers,
                                 firstweekday, monthdisplay, keybindings)
         padded = CAttrMap(
-            urwid.Padding(wrapped, align='left', width=datewidth, left=0, right=1),
+            urwid.Padding(wrapped, align='left', width=inner_width, left=0, right=1),
             'calendar', 'calendar focus',
         )
         super().__init__(padded)
