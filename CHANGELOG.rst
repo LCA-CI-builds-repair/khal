@@ -1,7 +1,200 @@
 Changelog
 #########
 All notable changes to this project should be documented here.
+
 For more detailed information have a look at the git log.
+
+Package maintainers and users who have to manually update their installation
+may want to subscribe to `GitHub's tag feed <https://github.com/geier/khal/tags.atom>`_.
+
+0.11.3
+------
+not released yet
+...
+
+0.10.5
+------
+released 2017-06-26
+...
+
+0.10.4
+------
+released 2017-07-29
+...
+
+0.10.3
+------
+released 2017-04-27
+...
+
+0.10.2
+------
+released 2017-02-13
+...
+
+0.10.1
+------
+released 2017-03-30
+...
+
+0.10.0
+------
+released 2017-03-25
+...
+
+...
+
+0.9.8
+------
+released 2017-10-05
+...
+
+0.9.7
+------
+released 2017-09-15
+...
+
+0.9.6
+------
+released 2017-06-13
+...
+
+0.9.5
+------
+released 2017-04-08
+...
+
+...
+
+0.9.3
+------
+released 2017-03-06
+...
+
+0.9.2
+------
+released 2017-02-13
+...
+
+0.9.1
+------
+released 2017-01-30
+...
+
+0.9.0
+------
+released 2017-01-15
+...
+
+0.8.10
+------
+released 2016-12-12
+...
+
+0.8.9
+------
+released 2016-11-28
+...
+
+0.8.8
+------
+released 2016-10-24
+...
+
+0.8.7
+------
+released 2016-09-19
+...
+
+0.8.6
+------
+released 2016-08-15
+...
+
+0.8.5
+------
+released 2016-07-18
+...
+
+0.8.4
+------
+released 2016-06-13
+...
+
+0.8.3
+------
+released 2016-05-09
+...
+
+0.8.2
+------
+released 2016-04-05
+...
+
+0.8.1
+------
+released 2016-03-01
+...
+
+0.8.0
+------
+released 2015-12-14
+...
+
+0.7.10
+------
+released 2015-11-16
+...
+
+0.7.9
+------
+released 2015-10-12
+...
+
+0.7.8
+------
+released 2015-09-07
+...
+
+0.7.7
+------
+released 2015-08-03
+...
+
+0.7.6
+------
+released 2015-07-06
+...
+
+0.7.5
+------
+released 2015-06-01
+...
+
+0.7.4
+------
+released 2015-04-27
+...
+
+0.7.3
+------
+released 2015-03-23
+...
+
+0.7.2
+------
+released 2015-02-16
+...
+
+0.7.1
+------
+released 2015-01-19
+...
+
+0.7.0
+------
+released 2014-12-01
+...For more detailed information have a look at the git log.
 
 Package maintainers and users who have to manually update their installation
 may want to subscribe to `GitHub's tag feed
