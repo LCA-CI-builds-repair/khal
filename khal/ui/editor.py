@@ -95,7 +95,7 @@ class CalendarPopUp(urwid.PopUpLauncher):
             return pop_up
 
     def get_pop_up_parameters(self):
-        width = 31 if self._weeknumbers == 'right' else 28
+        width = len(dateformat) + 1 if self._weeknumbers == 'right' else len(dateformat) + 1
         return {'left': 0, 'top': 1, 'overlay_width': width, 'overlay_height': 8}
 
 
@@ -116,7 +116,7 @@ class DateEdit(urwid.WidgetWrap):
         monthdisplay: Literal['firstday', 'firstfullweek']='firstday',
         keybindings: Optional[Dict[str, List[str]]] = None,
     ) -> None:
-        datewidth = len(startdt.strftime(dateformat)) + 1
+        datewidth = len(dateformat) + 1
         self._dateformat = dateformat
         if startdt is None:
             startdt = dt.date.today()
