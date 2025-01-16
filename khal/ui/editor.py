@@ -96,6 +96,7 @@ class CalendarPopUp(urwid.PopUpLauncher):
 
     def get_pop_up_parameters(self):
         width = 31 if self._weeknumbers == 'right' else 28
+        width = max(width, self._get_base_widget().get_value_width())
         return {'left': 0, 'top': 1, 'overlay_width': width, 'overlay_height': 8}
 
 
