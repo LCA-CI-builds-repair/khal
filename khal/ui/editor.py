@@ -84,13 +84,13 @@ class CalendarPopUp(urwid.PopUpLauncher):
         except DateConversionError:
             return None
         else:
-            pop_up = CalendarWidget(
+            calendar = CalendarWidget(
                 on_change, self._keybindings, on_press,
                 firstweekday=self._firstweekday,
                 weeknumbers=self._weeknumbers,
                 monthdisplay=self._monthdisplay,
                 initial=initial_date)
-            pop_up = CAttrMap(pop_up, 'calendar', ' calendar focus')
+            pop_up = CAttrMap(calendar, 'calendar', 'calendar focus')
             pop_up = CAttrMap(urwid.LineBox(pop_up), 'calendar', 'calendar focus')
             return pop_up
 
@@ -120,6 +120,8 @@ class DateEdit(urwid.WidgetWrap):
         self._dateformat = dateformat
         if startdt is None:
             startdt = dt.date.today()
+        # Calculate total width including padding
+        self._total_width = datewidth + 1  # Add 1 for right padding
         self._edit = ValidatedEdit(
             dateformat=dateformat,
             EditWidget=DateWidget,
@@ -129,7 +131,7 @@ class DateEdit(urwid.WidgetWrap):
         wrapped = CalendarPopUp(self._edit, on_date_change, weeknumbers,
                                 firstweekday, monthdisplay, keybindings)
         padded = CAttrMap(
-            urwid.Padding(wrapped, align='left', width=datewidth, left=0, right=1),
+            urwid.Padding(wrapped, align='left', width=('relative', 100), left=0, right=1),
             'calendar', 'calendar focus',
         )
         super().__init__(padded)
