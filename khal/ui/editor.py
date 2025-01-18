@@ -118,7 +118,7 @@ class DateEdit(urwid.WidgetWrap):
     ) -> None:
         datewidth = len(startdt.strftime(dateformat)) + 1
         self._dateformat = dateformat
-        if startdt is None:
+        if not isinstance(startdt, (dt.date, dt.datetime)):
             startdt = dt.date.today()
         self._edit = ValidatedEdit(
             dateformat=dateformat,
@@ -128,7 +128,7 @@ class DateEdit(urwid.WidgetWrap):
             on_date_change=on_date_change)
         wrapped = CalendarPopUp(self._edit, on_date_change, weeknumbers,
                                 firstweekday, monthdisplay, keybindings)
-        padded = CAttrMap(
+        padded = urwid.AttrMap(  # Use base urwid.AttrMap instead of custom CAttrMap
             urwid.Padding(wrapped, align='left', width=datewidth, left=0, right=1),
             'calendar', 'calendar focus',
         )
@@ -149,7 +149,8 @@ class DateEdit(urwid.WidgetWrap):
         :returns: the currently entered date
         :rtype: datetime.date
         """
-        return self._validate(self._edit.get_edit_text())
+        text = self._edit.get_edit_text()
+        return self._validate(text) if text else None
 
     @date.setter
     def date(self, date):
