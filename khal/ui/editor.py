@@ -346,7 +346,9 @@ class StartEndEditor(urwid.WidgetWrap):
         return (self.startdt != self._original_start) or (self.enddt != self._original_end)
 
     def validate(self):
-        return self.startdt <= self.enddt
+        if self.startdt > self.enddt:
+            self.startdt, self.enddt = self.enddt, self.startdt
+        return True
 
 
 class EventEditor(urwid.WidgetWrap):
