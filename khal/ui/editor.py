@@ -294,14 +294,14 @@ class StartEndEditor(urwid.WidgetWrap):
             self.conf['locale']['firstweekday'],
             self.conf['view']['monthdisplay'],
             self.conf['keybindings'],
-        )
+        )._w
         self.widgets.enddate = DateEdit(
             self._enddt, self.conf['locale']['longdateformat'],
             self._end_date_change, self.conf['locale']['weeknumbers'],
             self.conf['locale']['firstweekday'],
             self.conf['view']['monthdisplay'],
             self.conf['keybindings'],
-        )
+        )._w
 
         if state is True:  # allday event
             self.on_type_change(True)
