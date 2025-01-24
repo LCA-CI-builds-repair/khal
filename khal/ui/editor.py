@@ -120,6 +120,9 @@ class DateEdit(urwid.WidgetWrap):
         self._dateformat = dateformat
         if startdt is None:
             startdt = dt.date.today()
+        # Adjust datewidth to ensure compatibility with urwid rendering
+        if datewidth < 11: 
+            datewidth = 11
         self._edit = ValidatedEdit(
             dateformat=dateformat,
             EditWidget=DateWidget,
